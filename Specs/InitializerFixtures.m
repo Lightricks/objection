@@ -60,6 +60,31 @@ objection_initializer_sel(@selector(initWithModel:horsePower:andYear:))
 
 @end
 
+@implementation PrimitiveConfigurableCar
+
+objection_register(PrimitiveConfigurableCar)
+objection_requires(@"engine")
+objection_initializer_sel(@selector(initWithModel:size:andYear:error:))
+
+@synthesize car = _car;
+@synthesize engine = _engine;
+
+@synthesize model = _model;
+@synthesize size = _size;
+@synthesize year = _year;
+
+- (id)initWithModel:(NSString *)model size:(CGSize)size andYear:(NSUInteger)year error:(NSError **)error {
+    if ((self = [super init])) {
+//      *error = [NSError errorWithDomain:@"foo" code:1337 userInfo:nil];
+        self.model = model;
+        self.size = size;
+        self.year = year;
+    }
+    return self;
+}
+
+@end
+
 @implementation FilterInitInitializer
 objection_initializer(init)
 

@@ -46,6 +46,18 @@ it(@"injector supports passing a different initializer", ^{
 });
 
 
+fit(@"supports initializing an object with primitive arguments", ^{
+    CGSize size = CGSizeMake(6.5, 1.2);
+    NSValue *value = [NSValue valueWithBytes:&size objCType:@encode(CGSize)];
+    NSError *error;
+    PrimitiveConfigurableCar *car = [injector getObjectWithArgs:[PrimitiveConfigurableCar class], @"Passat", value, @2002, [NSValue valueWithPointer:&error], nil];
+
+    expect(car.model).to(equal(@"Passat"));
+    expect(car.year).to(equal(@2002));
+    expect(car.engine).to(beAKindOf([Engine class]));
+    expect(@(car.size)).to(equal(@(CGSizeMake(6.5, 1.2))));
+});
+
 it(@"supports initializing an object with a class method", ^{
     Truck *truck = [injector getObjectWithArgs:[Truck class], @"Ford", nil];
 

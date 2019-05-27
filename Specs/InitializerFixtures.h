@@ -23,6 +23,18 @@
 - (id)initWithModel:(NSString *)model horsePower:(NSNumber *)horsePower andYear:(NSNumber *)year;
 @end
 
+@interface PrimitiveConfigurableCar : NSObject
+
+@property (nonatomic, strong) Car *car;
+@property (nonatomic, strong) Engine *engine;
+
+@property (nonatomic, copy) NSString *model;
+@property (nonatomic) NSUInteger year;
+@property (nonatomic) CGSize size;
+
+- (id)initWithModel:(NSString *)model size:(CGSize)size andYear:(NSUInteger)year error:(NSError **)error;
+@end
+
 @interface BadInitializer : NSObject
 @end
 
