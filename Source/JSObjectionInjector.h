@@ -33,5 +33,6 @@
 - (void)injectDependencies:(id)object;
 - (id)objectForKeyedSubscript: (id)key;
 - (NSArray *)modules;
+- (void)updateModule:(JSObjectionModule *)module;
 
 @end

@@ -239,6 +239,11 @@
     return [_modules copy];
 }
 
+- (void)updateModule:(JSObjectionModule *)module {
+  NSSet *mergedSet = [module.eagerSingletons setByAddingObjectsFromSet:_eagerSingletons];
+  _eagerSingletons = mergedSet;
+  [_context addEntriesFromDictionary:module.bindings];
+}
 
 #pragma mark - Private
 
