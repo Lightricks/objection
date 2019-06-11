@@ -1029,7 +1029,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				INSTALL_PATH = /usr/local/lib;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Objection-StaticLib";
 				SDKROOT = iphoneos;
@@ -1051,7 +1051,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				INSTALL_PATH = /usr/local/lib;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Objection-StaticLib";
 				SDKROOT = iphoneos;
@@ -1165,7 +1165,7 @@
 					"$(SRCROOT)/Vendor/Kiwi/NonARC/**",
 				);
 				INFOPLIST_FILE = "Specs-iOS/Specs-iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -1206,7 +1206,7 @@
 					"$(SRCROOT)/Vendor/Kiwi/NonARC/**",
 				);
 				INFOPLIST_FILE = "Specs-iOS/Specs-iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
