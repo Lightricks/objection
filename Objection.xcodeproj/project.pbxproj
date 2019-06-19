@@ -1144,6 +1144,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Objection-StaticLib";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				VALID_ARCHS = "i386 x86_64 arm64 armv7s armv7";
 			};
 			name = Debug;
@@ -1166,6 +1167,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Objection-StaticLib";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				VALID_ARCHS = "i386 x86_64 arm64 armv7s armv7";
 			};
 			name = Release;
