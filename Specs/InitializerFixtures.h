@@ -34,3 +34,15 @@
 @interface FilterInitInitializer : NSObject
 @end
 
+@interface PrimitiveConfigurableCar : NSObject
+
+@property (nonatomic, strong) Car *car;
+@property (nonatomic, strong) Engine *engine;
+
+@property (nonatomic, copy) NSString *model;
+@property (nonatomic) NSUInteger year;
+@property (nonatomic) CGSize size;
+@property (nonatomic) BOOL automatic;
+
+- (id)initWithModel:(NSString *)model size:(CGSize)size andYear:(NSUInteger)year automatic:(BOOL)automatic error:(NSError **)error;
+@end

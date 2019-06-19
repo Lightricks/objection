@@ -3,6 +3,7 @@
 
 QuickSpecBegin(InitializerSpecs)
 __block JSObjectionInjector *injector = nil;
+__block NSError *error;
 
 beforeEach(^{
     injector = [JSObjection createInjector];
@@ -56,6 +57,19 @@ it(@"supports initializing an object with a class method", ^{
 it(@"filters the init initializer as a class initializer option", ^{
     FilterInitInitializer *obj = [injector getObject:[FilterInitInitializer class]];
     expect(obj).toNot(beNil());
+});
+
+it(@"supports initializing an object with primitive arguments", ^{
+    CGSize size = CGSizeMake(6.5, 1.2);
+    NSValue *value = [NSValue valueWithBytes:&size objCType:@encode(CGSize)];
+    PrimitiveConfigurableCar *car = [injector getObjectWithArgs:[PrimitiveConfigurableCar class], @"Passat", value, @2002, @NO, [NSValue valueWithPointer:&error], nil];
+
+    expect(car.model).to(equal(@"Passat"));
+    expect(car.year).to(equal(@2002));
+    expect(car.automatic).to(beFalsy());
+    expect(car.engine).to(beAKindOf([Engine class]));
+    expect(@(car.size)).to(equal(@(CGSizeMake(6.5, 1.2))));
+    expect(error).toNot(beNil());
 });
 
 QuickSpecEnd

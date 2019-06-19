@@ -111,8 +111,22 @@ static id BuildObjectWithInitializer(Class klass, SEL initializer, NSArray *argu
         [invocation setTarget:isClassMethod ? klass : instance];
         [invocation setSelector:initializer];
         for (int i = 0; i < arguments.count; i++) {
-            __unsafe_unretained id argument = [arguments objectAtIndex:i];
-            [invocation setArgument:&argument atIndex:i + 2];
+            const char *argumentType = [signature getArgumentTypeAtIndex:i + 2];
+            if (!strcmp(argumentType, @encode(id)) || !strcmp(argumentType, @encode(Class))) {
+              __unsafe_unretained id argument = [arguments objectAtIndex:i];
+              [invocation setArgument:&argument atIndex:i + 2];
+            } else {
+              if (![arguments[i] isKindOfClass:[NSValue class]]) {
+                @throw [NSException exceptionWithName:JSObjectionException reason:@"Method parameter is not an object, but non-NSValue argument is given" userInfo:nil];
+              }
+
+              NSUInteger size;
+              NSGetSizeAndAlignment(argumentType, &size, NULL);
+
+              NSMutableData *data = [NSMutableData dataWithLength:size];
+              [arguments[i] getValue:data.mutableBytes];
+              [invocation setArgument:data.mutableBytes atIndex:i + 2];
+            }
         }
         [invocation invoke];
 		[invocation getReturnValue:&instance];
