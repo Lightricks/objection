@@ -74,14 +74,18 @@ static id<JSObjectionPropertyReflector> gPropertyReflector;
 
 + (void)registerClass:(Class)theClass scope:(JSObjectionScope)scope {
     pthread_mutex_lock(&gObjectionMutex);
+  @try {
     if (scope != JSObjectionScopeSingleton && scope != JSObjectionScopeNormal) {
         @throw [NSException exceptionWithName:@"JSObjectionInjectorException" reason:@"Invalid Instantiation Rule" userInfo:nil];
     }
 
     if (theClass && [gObjectionContext objectForKey:NSStringFromClass(theClass)] == nil) {
         [gObjectionContext setObject:[JSObjectionInjectorEntry entryWithClass:theClass scope:scope] forKey:NSStringFromClass(theClass)];
-    } 
+    }
+  }
+  @finally {
     pthread_mutex_unlock(&gObjectionMutex);
+  }
 }
 
 + (void)reset {
